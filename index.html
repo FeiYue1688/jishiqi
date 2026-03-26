@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>语音计时器</title>
+    <style>
+        body {
+
+            background-color: black;
+
+        }
+
+        button {
+
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 70vw;
+            height: 200px;
+            font: 700 100px "微软雅黑";
+            border-radius: 200px;
+            border: 10px solid white;
+
+        }
+
+        #start {
+
+            top: 30%;
+
+        }
+
+        #end {
+
+            top: 60%;
+
+        }
+    </style>
+</head>
+
+<body>
+
+    <button id="start">开始计时</button>
+    <button id="end">结束计时</button>
+
+    <script>
+
+        const start = document.querySelector('#start');
+
+        let ClearTimer = null;
+
+        start.addEventListener('click', () => {
+
+            if (ClearTimer) clearInterval(ClearTimer);
+
+            let i = 0;
+
+            ClearTimer = setInterval(() => {
+
+                i++;
+                const msg = new SpeechSynthesisUtterance(i);
+
+                msg.rate = 5;     // 语速 (0.1 - 10)
+
+                msg.lang = 'zh-CN'; // 语言
+
+                speechSynthesis.speak(msg);
+
+            }, 1000);
+
+        });
+
+        const end = document.querySelector('#end');
+
+        end.addEventListener('click', () => {
+
+            if (ClearTimer) clearInterval(ClearTimer);
+
+        });
+
+    </script>
+
+</body>
+
+</html>
