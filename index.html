@@ -37,6 +37,18 @@
             top: 60%;
 
         }
+
+        #version {
+
+            position: fixed;
+            bottom: 0;
+            padding-bottom: 20px;
+            transform: translate(-50%, 0);
+            left: 50%;
+            color: white;
+            font: 700 30px "微软雅黑";
+
+        }
     </style>
 </head>
 
@@ -44,6 +56,7 @@
 
     <button id="start">开始计时</button>
     <button id="end">结束计时</button>
+    <span id="version">&copy; 1.0.3</span>
 
     <script>
 
@@ -84,6 +97,7 @@
                 // 关键：先取消旧的，再播报新的，防止队列堆积
                 synth.cancel();
                 synth.speak(msg);
+
             }, 1000);
         });
 
