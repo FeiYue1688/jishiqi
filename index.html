@@ -56,7 +56,7 @@
 
     <button id="start">开始计时</button>
     <button id="end">结束计时</button>
-    <span id="version">&copy; 1.0.9</span>
+    <span id="version">&copy; 1.10</span>
 
     <script>
 
@@ -77,20 +77,26 @@
 
             async function loop() {
 
-                i++;
+                await new Promise(resolve => {
 
-                // 格式化：前 60 秒只报数字，提高效率
-                //     如果是刚好1分钟整，会报 " 1分零 "
-                //     因此如果 i % 60 === 0 说明到了分钟整，返回空字符串，而不是还要读一下零
-                let timeStr = i < 60 ? `${i}` : `${Math.floor(i / 60)}分${i % 60 === 0 ? '' : i % 60}`;
+                    i++;
 
-                msg.text = timeStr;
+                    // 格式化：前 60 秒只报数字，提高效率
+                    //     如果是刚好1分钟整，会报 " 1分零 "
+                    //     因此如果 i % 60 === 0 说明到了分钟整，返回空字符串，而不是还要读一下零
+                    let timeStr = i < 60 ? `${i}` : `${Math.floor(i / 60)}分${i % 60 === 0 ? '' : i % 60}`;
 
-                msg.rate = 2.5;
+                    msg.text = timeStr;
 
-                msg.lang = 'zh-CN';
+                    msg.rate = 2.5;
 
-                synth.speak(msg);
+                    msg.lang = 'zh-CN';
+
+                    synth.speak(msg);
+
+                    resolve();
+
+                });
 
                 setTimeout(loop, 1000);
 
