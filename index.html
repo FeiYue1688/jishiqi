@@ -56,7 +56,7 @@
 
     <button id="start">开始计时</button>
     <button id="end">结束计时</button>
-    <span id="version">&copy; 1.0.9</span>
+    <span id="version">&copy; 1.0.10</span>
 
     <script>
 
@@ -82,7 +82,7 @@
 
             clearTimer = setInterval(() => {
 
-                i++;
+                i += 2;
 
                 // 格式化：前 60 秒只报数字，提高效率
                 //     如果是刚好1分钟整，会报 " 1分零 "
@@ -91,7 +91,7 @@
 
                 msg.text = timeStr;
 
-                msg.rate = 5; // 建议 2-3 之间，兼顾速度与清晰度
+                msg.rate = 2.5; // 建议 2-3 之间，兼顾速度与清晰度
 
                 msg.lang = 'zh-CN';
 
@@ -99,7 +99,7 @@
                 synth.cancel();
                 synth.speak(msg);
 
-            }, 1000);
+            }, 2000);
         });
 
         end.addEventListener('click', () => {
