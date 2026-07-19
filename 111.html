@@ -82,7 +82,7 @@
                 // 格式化：前 60 秒只报数字，提高效率
                 //     如果是刚好1分钟整，会报 " 1分零 "
                 //     因此如果 i % 60 === 0 说明到了分钟整，返回空字符串，而不是还要读一下零
-                let timeStr = i < 60 ? `${i}` : `${Math.floor(i / 60)}分${i % 60 === 0 ? '' : i % 60}`;
+                let timeStr = '11111111111';
 
                 msg.text = timeStr;
 
@@ -92,7 +92,6 @@
 
                 synth.speak(msg);
 
-                等待当前播放完毕
                 await new Promise(resolve => {
 
                     msg.addEventListener('end', () => {
@@ -103,7 +102,9 @@
 
                 });
 
-                setTimeout(loop, 1000);
+                console.log('播放完毕');
+
+                setTimeout(loop, 2000);
 
             };
 
