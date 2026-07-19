@@ -56,7 +56,7 @@
 
     <button id="start">开始计时</button>
     <button id="end">结束计时</button>
-    <span id="version">&copy; 1.0.3</span>
+    <span id="version">&copy; 1.0.4</span>
 
     <script>
 
@@ -64,6 +64,16 @@
         const end = document.querySelector('#end');
         let clearTimer = null;
         let i = 0;
+
+        // 兼容小米系统语速
+        const XiaoMi = await navigator.userAgentData.getHighEntropyValues(["model", "platform", "platformVersion"])
+            .then(ua => {
+
+                if (ua.model === 'M2012K11AC') return true;
+
+                return false;
+
+            });
 
         // 预创建语速对象，避免在定时器里重复创建对象，提高性能
         const synth = window.speechSynthesis;
@@ -91,7 +101,16 @@
 
                 msg.text = timeStr;
 
-                msg.rate = 2.5; // 建议 2-3 之间，兼顾速度与清晰度
+                if (XiaoMi) {
+
+                    msg.rate = 5; // 建议 2-3 之间，兼顾速度与清晰度
+
+                } else {
+
+                    msg.rate = 2.5; // 建议 2-3 之间，兼顾速度与清晰度
+
+                };
+
                 msg.lang = 'zh-CN';
 
                 // 关键：先取消旧的，再播报新的，防止队列堆积
