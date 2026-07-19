@@ -56,7 +56,7 @@
 
     <button id="start">开始计时</button>
     <button id="end">结束计时</button>
-    <span id="version">&copy; 1.888</span>
+    <span id="version">&copy; 1.666</span>
 
     <script>
 
@@ -92,7 +92,7 @@
 
                 synth.speak(msg);
 
-                等待当前播放完毕
+                // 等待当前播放完毕
                 await new Promise(resolve => {
 
                     msg.addEventListener('end', () => {
