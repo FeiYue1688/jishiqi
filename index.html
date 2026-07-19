@@ -64,7 +64,13 @@
         const XiaoMi = await navigator.userAgentData.getHighEntropyValues(["model", "platform", "platformVersion"])
             .then(ua => {
 
-                if (ua.model === 'M2012K11AC') return true;
+                if (ua.model === 'M2012K11AC') {
+
+                    alert('小米系统');
+
+                    return true;
+
+                }
 
             });
 
