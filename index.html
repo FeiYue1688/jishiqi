@@ -56,9 +56,9 @@
 
     <button id="start">开始计时</button>
     <button id="end">结束计时</button>
-    <span id="version">&copy; 1.0.5</span>
+    <span id="version">&copy; 1.0.6</span>
 
-    <script>
+    <script type="module">
 
         const start = document.querySelector('#start');
         const end = document.querySelector('#end');
@@ -103,7 +103,7 @@
 
                 if (XiaoMi) {
 
-                    msg.rate = 3; // 建议 2-3 之间，兼顾速度与清晰度
+                    msg.rate = 5; // 建议 2-3 之间，兼顾速度与清晰度
 
                 } else {
 
