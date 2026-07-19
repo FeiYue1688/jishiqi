@@ -73,14 +73,9 @@
 
         start.addEventListener('click', (e) => {
 
-            if (clearTimer) clearInterval(clearTimer);
-
             i = 0; // 重置计数
 
-            // 立即停止之前的播报
-            synth.cancel();
-
-            clearTimer = setInterval(() => {
+            async function loop() {
 
                 i++;
 
@@ -91,15 +86,17 @@
 
                 msg.text = timeStr;
 
-                msg.rate = 2.5; // 建议 2-3 之间，兼顾速度与清晰度
+                msg.rate = 2.5;
 
                 msg.lang = 'zh-CN';
 
-                // 关键：先取消旧的，再播报新的，防止队列堆积
-                synth.cancel();
                 synth.speak(msg);
 
-            }, 1000);
+                setTimeout(loop, 1000);
+
+            };
+
+            loop();
         });
 
         end.addEventListener('click', () => {
