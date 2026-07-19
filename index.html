@@ -56,11 +56,15 @@
 
     <button id="start">开始计时</button>
     <button id="end">结束计时</button>
-    <span id="version">&copy; 1.0.4</span>
+    <span id="version">&copy; 1.0.5</span>
 
     <script>
 
-        alert(navigator.userAgent);
+        navigator.userAgentData.getHighEntropyValues(["model", "platform", "platformVersion"])
+            .then(ua => {
+                alert("品牌型号:" + ua.model);      // 例如 "M2012K11AC" (小米型号)
+                alert("平台:" + ua.platform);
+            });
 
         const start = document.querySelector('#start');
         const end = document.querySelector('#end');
